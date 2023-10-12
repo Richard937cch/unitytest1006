@@ -23,10 +23,15 @@ public class Movement : MonoBehaviour
 
     Rigidbody rb;
 
+    //count point
+    private int count;
+
     private void Start() //assign rigidbody
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; //prevent player falls over
+
+        count = 0;
     }
 
     private void Update()
@@ -66,6 +71,8 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive (false);
+
+            count = count + 1; //count point
         }
     }
     
