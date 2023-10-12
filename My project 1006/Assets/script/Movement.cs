@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -25,6 +28,7 @@ public class Movement : MonoBehaviour
 
     //count point
     private int count;
+    public TMP_Text countText;
 
     private void Start() //assign rigidbody
     {
@@ -32,6 +36,7 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true; //prevent player falls over
 
         count = 0;
+        SetCountText ();
     }
 
     private void Update()
@@ -73,7 +78,13 @@ public class Movement : MonoBehaviour
             other.gameObject.SetActive (false);
 
             count = count + 1; //count point
+            SetCountText ();
         }
+    }
+
+    void SetCountText ()
+    {
+        countText.text = "Count: " + count.ToString();
     }
     
    
