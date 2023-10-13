@@ -30,6 +30,8 @@ public class Movement : MonoBehaviour
     private int count;
     public TMP_Text countText;
 
+    public TMP_Text win;
+
     private void Start() //assign rigidbody
     {
         rb = GetComponent<Rigidbody>();
@@ -37,6 +39,8 @@ public class Movement : MonoBehaviour
 
         count = 0;
         SetCountText ();
+
+        win.text = "";
     }
 
     private void Update()
@@ -85,6 +89,10 @@ public class Movement : MonoBehaviour
     void SetCountText ()
     {
         countText.text = "Count: " + count.ToString();
+        if (count>=5)
+        {
+            win.text = "You Win";
+        }
     }
     
    
