@@ -10,10 +10,17 @@ public class shipMovement : MonoBehaviour
     private float movement = 0f;
     private float movement1 = 0f;
 
+    public GameObject objectToSpawn;
+
+    public float delay = 1.5f;
+    float timer=0;
+
+
     private void FixedUpdate()
     {
         movement = 0f;
         movement1 = 0f;
+        timer += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -33,6 +40,24 @@ public class shipMovement : MonoBehaviour
         {
             movement1 -= 1f;
         }
+
+
+        if (Input.GetKey(KeyCode.Space) )
+        {
+            
+       
+            if (timer > delay)
+            {
+                GameObject newObject = Instantiate(objectToSpawn);
+                newObject.transform.position = transform.position;
+                //newObject.transform.position[0] += 0.65f;
+                //enabled = false;
+                timer =0;
+            }
+            
+            
+        }
+
 
         Vector3 moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * new Vector3(movement1, 0, movement);
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + moveDirection * speed * Time.fixedDeltaTime);
